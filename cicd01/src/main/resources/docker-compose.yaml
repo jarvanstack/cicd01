@@ -1,0 +1,14 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins
+    restart: always
+    container_name: jenkins
+    ports:
+      - '8081:8080'
+      - '50000:50000'
+    volumes:
+      - ./data/:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock # 默认配置
+      - /usr/bin/docker:/usr/bin/docker 		  # 默认配置
+      - /etc/localtime:/etc/localtime:ro		  # 默认配置
