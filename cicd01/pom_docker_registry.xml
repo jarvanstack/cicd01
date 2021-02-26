@@ -86,12 +86,23 @@
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
+                <executions>
+                    <!--执行 mvn package 时 自动 执行 mvn docker:build-->
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
+<!--                    使用 Dockerfile的地址-->
                     <dockerDirectory>${project.basedir}/src/main/resources</dockerDirectory>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                     </imageTags>
-                    <registryUrl>ccr.ccs.tencentyun.com/bmft</registryUrl>
+                    <registryUrl>81.71.89.149:5000</registryUrl>
 
                     <pushImage>true</pushImage>
                     <imageName>81.71.89.149:5000/${project.artifactId}</imageName>
